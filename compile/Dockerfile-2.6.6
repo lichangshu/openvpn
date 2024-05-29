@@ -1,0 +1,15 @@
+FROM gcc:10.5.0
+
+ARG ver=2.6.6
+VOLUME /usr/local/openvpn/
+WORKDIR /root/
+RUN wget https://github.com/OpenVPN/openvpn/releases/download/v${ver}/openvpn-${ver}.tar.gz \
+   && tar -xzvf openvpn-${ver}.tar.gz \
+   && cd openvpn-${ver}
+
+RUN apt update && apt install -y libcap-ng-dev libnl-genl-3-dev liblz4-dev liblzo2-dev libpam0g-dev \
+   && cd openvpn-${ver} \
+   && ./configure --prefix=/usr/local/openvpn \
+   && make && make install
+
+

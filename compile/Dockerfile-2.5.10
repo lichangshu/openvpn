@@ -1,7 +1,6 @@
 FROM gcc:10.5.0
 
 ARG ver=2.5.10
-VOLUME /usr/local/openvpn/
 WORKDIR /root/
 RUN wget https://github.com/OpenVPN/openvpn/releases/download/v${ver}/openvpn-${ver}.tar.gz \
    && tar -xzvf openvpn-${ver}.tar.gz \
